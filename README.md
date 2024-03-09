@@ -1,99 +1,64 @@
-# NPM Package Template
 
-This template is designed to kickstart your journey in creating your own npm package. It provides a basic folder structure and initial files to get you started.
+# gp-image-utils
 
-## Table of Contents
+A utility package for image compression and cropping in TypeScript/JavaScript.
 
-- [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [Package.json Guide](#packagejson-guide)
-- [Gitignore File Guide](#gitignore-file-guide)
-- [Writing Your Code](#writing-your-code)
-- [Publishing Your Package](#publishing-your-package)
+## Installation
 
-## Getting Started
+Install the package using npm:
 
-To set up your project, follow these steps:
-
-1. Install the necessary dependencies with `npm install`.
-2. Modify the `package.json` file to suit your project's needs.
-3. Uncomment the necessary lines in the `.gitignore` file.
-4. Build your project with `npm run build`.
-5. Clear the existing sample code in `index.ts`, `functions.ts`, and `types.ts`.
-6. Start writing your own functions or code.
-7. When ready, build and publish your code to npm.
-
-## Project Structure
-
-The project is structured as follows:
-
-```
-.
-├── src                  # Source files (push to GitHub)
-│   ├── index.ts         # Entry point of your package
-│   ├── functions.ts     # File where you define your package's functions
-│   └── types.ts         # File where you define your package's types
-├── dist                 # Compiled code (push to npm)
-├── node_modules         # Directory for installed packages
-├── .gitignore           # File specifying which files and directories to ignore in Git
-├── package.json         # File containing metadata about your package
-├── README.md            # File containing documentation for your package
-├── tsconfig.json        # Configuration file for TypeScript
-├── .npmignore           
-└── tsup.config.ts       
+```bash
+npm install gp-image-utils
 ```
 
-## Package.json Guide
+## Usage
 
-The `package.json` file contains important information about your project. Here's a guide to understanding and modifying it:
+Here's a basic example of how to use the `compressImage` function in a React component:
 
-- `name`: Your package name.
-- `version`: The current version of your package.
-- `description`: A description of your package.
-- `main`: The entry point for your package. Default is `./dist/index.js`.
-- `module`: The module entry point for your package. Default is `./dist/index.mjs`.
-- `types`: The TypeScript definition file for your package. Default is `./dist/index.d.ts`.
-- `homepage`: The homepage URL for your package.
-- `repository`: The URL of your package's repository.
-- `scripts`: Scripts that can be run from the command line. Default is `tsup` for the build script.
-- `keywords`: Keywords related to your package.
-- `author`: The author's name.
-- `license`: The license for your package. Default is `MIT`.
-- `devDependencies`: Development dependencies for your package. Default are `tsup` and `typescript`.
+```jsx
+import React, { useState } from 'react';
+import { compressImage } from 'gp-image-utils';
 
-## .gitignore File Guide
+function ImageUploader() {
+    const [selectedFile, setSelectedFile] = useState(null);
 
-The `.gitignore` file specifies which files and directories should be ignored by Git. Uncomment the following lines as needed:
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
 
-- `/node_modules`
-- `/dist`
-- `.env`
-- `.DS_Store`
+    const handleUpload = async () => {
+        if (selectedFile) {
+            const compressedFile = await compressImage(selectedFile, 100, { crop: true });
+            // Now you can use the compressedFile...
+        }
+    };
 
-## Writing Your Code
+    return (
+        <div>
+            <input type="file" onChange={handleFileChange} />
+            <button onClick={handleUpload}>Upload</button>
+        </div>
+    );
+}
 
-The `/src` folder is your starting point. It includes the `index.ts`, `functions.ts`, and `types.ts` files. To start writing your own code:
+export default ImageUploader;
+```
 
-1. Open the file in your text editor.
-2. Delete the existing sample code.
-3. Start writing your own functions or code.
+In this example, the `ImageUploader` component renders a file input and a button. When a file is selected, it's stored in the `selectedFile` state variable. When the button is clicked, the `handleUpload` function is called, which compresses the selected file using the `compressImage` function.
 
-## Publishing Your Package
+## API
 
-When you're ready to publish your package to npm:
+### compressImage(file, maxSizeKB, options)
 
-1. Ensure your `/dist` directory has the latest code. Run `npm run build`:
+Compresses an image file.
 
-   ```bash
-   npm run build
-   ```
+- `file`: The image file to compress.
+- `maxSizeKB`: The maximum size of the compressed image in kilobytes.
+- `options`: An object with the following properties:
+  - `crop`: A boolean indicating whether to crop the image.
 
-2. Publish your package with `npm publish`:
+Returns a Promise that resolves with the compressed image file.
 
-   ```bash
-   npm publish
-   ```
+## License
 
-3. Authenticate with your npm account.
-
-Congratulations! Your npm package is now published. Great job!
+MIT

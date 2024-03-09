@@ -1,5 +1,6 @@
+
 /**
- * This is a root file for your package development.
+ * This module exports all the functions from the 'functions' module.
  */
 
 export * from './functions'
