@@ -1,6 +1,6 @@
 {
   "name": "gp-image-utils", 
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A utility package for compressing and cropping images",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

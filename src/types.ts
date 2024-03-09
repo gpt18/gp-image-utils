@@ -1,7 +1,7 @@
 /**
  * Represents the properties for compressing an image.
  */
-export interface CompressImageProps {
+export type CompressImageProps = {
     /**
      * The file to be compressed.
      */

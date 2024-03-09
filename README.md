@@ -1,7 +1,7 @@
 
 # gp-image-utils
 
-A utility package for image compression and cropping in TypeScript/JavaScript.
+A utility package for image compression and cropping in JavaScript.
 
 ## Installation
 
