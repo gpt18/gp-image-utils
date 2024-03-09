@@ -1,0 +1,18 @@
+# /**
+#  * This file is used to specify which files and directories should be ignored by Git.
+#  * It helps to prevent certain files from being tracked and committed to the repository.
+#  * 
+#  * In this specific .gitignore file, the following patterns are specified:
+#  * - /node_modules: This directory is ignored, which means that any files and subdirectories within it will not be tracked by Git.
+#  * - /dist: This line is commented out, but if uncommented, it would ignore the /dist directory.
+#  * - .env: This file is ignored, which means that any changes made to it will not be tracked by Git.
+#  * - .DS_Store: This file is ignored, which is a macOS system file that stores custom attributes of a folder.
+#  */
+
+/node_modules
+
+## Below line should be uncommented while development
+
+# /dist
+# .env
+# .DS_Store
